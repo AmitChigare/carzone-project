@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Added Manually
+LOGIN_REDIRECT_URL = "dashboard"
+
 
 # Application definition
 
@@ -42,6 +45,15 @@ INSTALLED_APPS = [
     "cars.apps.CarsConfig",
     "ckeditor",
     "django.contrib.humanize",
+    "accounts.apps.AccountsConfig",
+    # All Auth
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.google",
+    "contacts.apps.ContactsConfig",
 ]
 
 MIDDLEWARE = [
@@ -139,6 +151,27 @@ STATICFILES_DIRS = [
 # Media Files Configuration
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Added Manually
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+}
+
+# Added Manually
+SITE_ID = 1
+
+# # Added Manually
+# SMTP Configuration
+# EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "smtpamit@gmail.com"
+EMAIL_HOST_PASSWORD = "detpwawdxirnhvrs"
+EMAIL_USE_TLS = True
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
